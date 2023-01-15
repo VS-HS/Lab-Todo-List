@@ -7,11 +7,11 @@ import { UpdateTodoDto } from './dto/update-todo.dto';
 export class TodoController {
   constructor(private readonly todosService: TodoService) { }
   
-  @Post(':name') // Create an object and Priority is auto generated
+  @Post(':todo') // Create an object and Priority is auto generated
   @HttpCode(201)
-  create(@Param('name') name: string) {
+  create(@Param('todo') todo: string) {
     const createTodoDto = new CreateTodoDto();
-    createTodoDto.name = name;
+    createTodoDto.todo = todo;
     createTodoDto.priority = 2;
     return this.todosService.create(createTodoDto);
   }

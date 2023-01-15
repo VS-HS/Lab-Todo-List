@@ -11,21 +11,14 @@ export class TodoService {
   constructor(@InjectRepository(Todo) private todoRepository: Repository<Todo>) { }
 
   todosDatabase = [];
-  // todosDatabase is of type CreateTodoDto[], it has name and priority
+  // todosDatabase is of type CreateTodoDto[], it has todo and priority
   
   async create(createTodoDto: CreateTodoDto): Promise<Todo> {
-
-    // this.todosDatabase.push({
-    //   todo : createTodoDto.name,
-    //   priority : createTodoDto.priority});
-    
-    // const response = createTodoDto;
     return await this.todoRepository.save(createTodoDto);
   }
 
-  createJSON(createTodoDto: CreateTodoDto) {
-    const response = createTodoDto;
-    return response;
+  async createJSON(createTodoDto: CreateTodoDto) {
+    return await this.todoRepository.save(createTodoDto);
   }
 
   async findAll(): Promise<Todo[]> {
