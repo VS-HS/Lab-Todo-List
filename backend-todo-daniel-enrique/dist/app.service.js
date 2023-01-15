@@ -10,7 +10,7 @@ exports.AppService = void 0;
 const common_1 = require("@nestjs/common");
 let AppService = class AppService {
     getHello() {
-        return "Welcome to the Todo API. Please visit /api for the documentation.";
+        return 'Welcome to the Todo API. Please visit /api for the documentation.';
     }
 };
 AppService = __decorate([

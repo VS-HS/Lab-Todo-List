@@ -1,19 +1,30 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
-import {InjectRepository} from "@nestjs/typeorm";
-import {Repository} from "typeorm";
-import {Todo} from "./entities/todo.entity";
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Todo } from './entities/todo.entity';
 
 @Injectable()
 export class TodoService {
-
-  constructor(@InjectRepository(Todo) private todoRepository: Repository<Todo>) { }
+  constructor(
+    @InjectRepository(Todo) private todoRepository: Repository<Todo>,
+  ) {}
 
   todosDatabase = [];
   // todosDatabase is of type CreateTodoDto[], it has todo and priority
-  
-  async create(createTodoDto: CreateTodoDto): Promise<Todo> {
+
+  async create(createTodoDto: CreateTodoDto) {
+    if (createTodoDto.todo == null) {
+      return {
+        timestamp: new Date().toISOString(),
+        status: 400,
+        error: 'Bad Request',
+        trace: 'backend-todo-daniel-enrique/src/todo/todo.service.ts',
+        message: 'Required request body is missing',
+        path: '/todos/',
+      };
+    }
     return await this.todoRepository.save(createTodoDto);
   }
 
@@ -25,17 +36,22 @@ export class TodoService {
     return await this.todoRepository.find();
   }
 
-  findOne(id: number) {
-    // return id;
-    return `This action returns a #${id} todo`;
+
+  async remove(CreateTodoDto: CreateTodoDto) {
+    return await this.todoRepository.delete(CreateTodoDto);
   }
 
-  remove(UpdateTodoDto: UpdateTodoDto) {
-    return `This action removes a #${UpdateTodoDto} todo`;
+  async findOne(id: string) {
+    const response = await this.todoRepository.findOneBy({ todo: id });
+    if (response == null) {
+      return "null";
+    }
+    return response;
   }
+
 
   count() {
     // return this.todosDatabase.length;
-    return 100;
+    return this.todoRepository.count();
   }
 }

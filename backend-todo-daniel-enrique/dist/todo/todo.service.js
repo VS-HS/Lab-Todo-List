@@ -23,6 +23,16 @@ let TodoService = class TodoService {
         this.todosDatabase = [];
     }
     async create(createTodoDto) {
+        if (createTodoDto.todo == null) {
+            return {
+                timestamp: new Date().toISOString(),
+                status: 400,
+                error: 'Bad Request',
+                trace: 'backend-todo-daniel-enrique/src/todo/todo.service.ts',
+                message: 'Required request body is missing',
+                path: '/todos/',
+            };
+        }
         return await this.todoRepository.save(createTodoDto);
     }
     async createJSON(createTodoDto) {
@@ -31,14 +41,18 @@ let TodoService = class TodoService {
     async findAll() {
         return await this.todoRepository.find();
     }
-    findOne(id) {
-        return `This action returns a #${id} todo`;
+    async remove(CreateTodoDto) {
+        return await this.todoRepository.delete(CreateTodoDto);
     }
-    remove(UpdateTodoDto) {
-        return `This action removes a #${UpdateTodoDto} todo`;
+    async findOne(id) {
+        const response = await this.todoRepository.findOneBy({ todo: id });
+        if (response == null) {
+            return "null";
+        }
+        return response;
     }
     count() {
-        return 100;
+        return this.todoRepository.count();
     }
 };
 TodoService = __decorate([
