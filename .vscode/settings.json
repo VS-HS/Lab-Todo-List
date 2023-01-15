@@ -10,8 +10,8 @@
             "driver": "MariaDB",
             "name": "todo_database",
             "database": "todo_database",
-            "username": "root",
-            "password": "root"
+            "username": "user",
+            "password": "1234"
         }
     ]
 }

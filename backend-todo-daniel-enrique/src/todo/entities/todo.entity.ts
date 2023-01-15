@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Repository, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Repository, Column, PrimaryGeneratedColumn } from "typeorm";
 
+@Entity()
 export class Todo {
     @ApiProperty({ type: String, description: 'Todo Item', required: false })
     @PrimaryGeneratedColumn()

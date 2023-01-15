@@ -1,11 +1,11 @@
 import { Controller, Get, Post, Body, Param, Delete, HttpCode, Response } from '@nestjs/common';
-import { TodosService } from './todos.service';
+import { TodoService } from './todo.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
 
-@Controller('todos')
-export class TodosController {
-  constructor(private readonly todosService: TodosService) { }
+@Controller('todo')
+export class TodoController {
+  constructor(private readonly todosService: TodoService) { }
   
   @Post(':name') // Create an object and Priority is auto generated
   @HttpCode(201)

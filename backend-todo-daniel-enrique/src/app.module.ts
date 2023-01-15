@@ -1,13 +1,11 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { DataSource } from 'typeorm';
-
-import { Todo } from './todos/entities/todo.entity';
+import { Todo } from './todo/entities/todo.entity';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TodosModule } from './todos/todos.module';
+import { TodoModule } from './todo/todo.module';
 
 @Module({
   imports: [
@@ -15,8 +13,8 @@ import { TodosModule } from './todos/todos.module';
       type: 'mariadb',
       host: 'localhost',
       port: 3001,
-      username: 'root',
-      password: 'root',
+      username: 'user',
+      password: '1234',
       database: 'todo_database',
       entities: [
         Todo,
@@ -24,7 +22,7 @@ import { TodosModule } from './todos/todos.module';
       synchronize: true, // This is for development only. Do not use in production.
       autoLoadEntities: true, // This is for development only. Do not use in production.
     }),
-    TodosModule,
+    TodoModule,
   ],
   controllers: [AppController],
   providers: [AppService],
