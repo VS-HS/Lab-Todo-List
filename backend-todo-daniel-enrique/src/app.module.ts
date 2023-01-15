@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
-
-// import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { DataSource } from 'typeorm';
 
@@ -11,19 +10,22 @@ import { AppService } from './app.service';
 import { TodosModule } from './todos/todos.module';
 
 @Module({
-  imports: [TodosModule],
-    // TypeOrmModule.forRoot({
-    //   type: 'mysql',
-    //   host: 'localhost',
-    //   port: 3306,
-    //   username: 'root',
-    //   password: 'root',
-    //   database: 'todo',
-    //   entities: [
-    //     Todo,
-    //   ],
-    //   syncronize: true,
-    //   autoLoadEntities: true,
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mariadb',
+      host: 'localhost',
+      port: 3001,
+      username: 'root',
+      password: 'root',
+      database: 'todo_database',
+      entities: [
+        Todo,
+      ],
+      synchronize: true, // This is for development only. Do not use in production.
+      autoLoadEntities: true, // This is for development only. Do not use in production.
+    }),
+    TodosModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

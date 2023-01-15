@@ -1,0 +1,3 @@
+docker/mariadb-data/**
+
+**/node_modules/**
