@@ -4,23 +4,40 @@ import { UpdateTodoDto } from './dto/update-todo.dto';
 
 @Injectable()
 export class TodosService {
+
+  todosDatabase = [];
+  // todosDatabase is of type CreateTodoDto[], it has name and priority
+  
   create(createTodoDto: CreateTodoDto) {
-    return 'This action adds a new todo';
+
+    this.todosDatabase.push({
+      todo : createTodoDto.name,
+      priority : createTodoDto.priority});
+    
+    const response = createTodoDto;
+    return response;
+  }
+
+  createJSON(createTodoDto: CreateTodoDto) {
+    const response = createTodoDto;
+    return response;
   }
 
   findAll() {
-    return `This action returns all todos`;
+    const response = this.todosDatabase;
+    return response;
   }
 
   findOne(id: number) {
+    // return id;
     return `This action returns a #${id} todo`;
   }
 
-  update(id: number, updateTodoDto: UpdateTodoDto) {
-    return `This action updates a #${id} todo`;
+  remove(UpdateTodoDto: UpdateTodoDto) {
+    return `This action removes a #${UpdateTodoDto} todo`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} todo`;
+  count() {
+    return this.todosDatabase.length;
   }
 }

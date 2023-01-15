@@ -9,20 +9,33 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TodosService = void 0;
 const common_1 = require("@nestjs/common");
 let TodosService = class TodosService {
+    constructor() {
+        this.todosDatabase = [];
+    }
     create(createTodoDto) {
-        return 'This action adds a new todo';
+        this.todosDatabase.push({
+            todo: createTodoDto.name,
+            priority: createTodoDto.priority
+        });
+        const response = createTodoDto;
+        return response;
+    }
+    createJSON(createTodoDto) {
+        const response = createTodoDto;
+        return response;
     }
     findAll() {
-        return `This action returns all todos`;
+        const response = this.todosDatabase;
+        return response;
     }
     findOne(id) {
         return `This action returns a #${id} todo`;
     }
-    update(id, updateTodoDto) {
-        return `This action updates a #${id} todo`;
+    remove(UpdateTodoDto) {
+        return `This action removes a #${UpdateTodoDto} todo`;
     }
-    remove(id) {
-        return `This action removes a #${id} todo`;
+    count() {
+        return this.todosDatabase.length;
     }
 };
 TodosService = __decorate([

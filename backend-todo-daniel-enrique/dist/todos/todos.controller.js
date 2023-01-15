@@ -21,24 +21,38 @@ let TodosController = class TodosController {
     constructor(todosService) {
         this.todosService = todosService;
     }
+    create(name) {
+        const createTodoDto = new create_todo_dto_1.CreateTodoDto();
+        createTodoDto.name = name;
+        createTodoDto.priority = 2;
+        return this.todosService.create(createTodoDto);
+    }
     findAll() {
         return this.todosService.findAll();
     }
-    create(createTodoDto) {
+    createJSON(createTodoDto) {
         return this.todosService.create(createTodoDto);
+    }
+    remove(UpdateTodoDto) {
+        return this.todosService.remove(UpdateTodoDto);
     }
     findOne(id) {
         return this.todosService.findOne(+id);
     }
-    update(id, updateTodoDto) {
-        return this.todosService.update(+id, updateTodoDto);
-    }
-    remove(id) {
-        return this.todosService.remove(+id);
+    count() {
+        return this.todosService.count();
     }
 };
 __decorate([
-    (0, common_1.Get)(""),
+    (0, common_1.Post)(':name'),
+    (0, common_1.HttpCode)(201),
+    __param(0, (0, common_1.Param)('name')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TodosController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
@@ -49,29 +63,27 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_todo_dto_1.CreateTodoDto]),
     __metadata("design:returntype", void 0)
-], TodosController.prototype, "create", null);
+], TodosController.prototype, "createJSON", null);
 __decorate([
-    (0, common_1.Get)(':id'),
+    (0, common_1.Delete)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [update_todo_dto_1.UpdateTodoDto]),
+    __metadata("design:returntype", void 0)
+], TodosController.prototype, "remove", null);
+__decorate([
+    (0, common_1.Get)('id/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], TodosController.prototype, "findOne", null);
 __decorate([
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
+    (0, common_1.Get)('/count'),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_todo_dto_1.UpdateTodoDto]),
+    __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], TodosController.prototype, "update", null);
-__decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], TodosController.prototype, "remove", null);
+], TodosController.prototype, "count", null);
 TodosController = __decorate([
     (0, common_1.Controller)('todos'),
     __metadata("design:paramtypes", [todos_service_1.TodosService])

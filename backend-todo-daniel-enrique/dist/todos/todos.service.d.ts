@@ -1,9 +1,11 @@
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
 export declare class TodosService {
-    create(createTodoDto: CreateTodoDto): string;
-    findAll(): string;
+    todosDatabase: any[];
+    create(createTodoDto: CreateTodoDto): CreateTodoDto;
+    createJSON(createTodoDto: CreateTodoDto): CreateTodoDto;
+    findAll(): any[];
     findOne(id: number): string;
-    update(id: number, updateTodoDto: UpdateTodoDto): string;
-    remove(id: number): string;
+    remove(UpdateTodoDto: UpdateTodoDto): string;
+    count(): number;
 }

@@ -1,1 +1,4 @@
-export class CreateTodoDto {}
+export class CreateTodoDto {
+    name: string;
+    priority: number;
+}

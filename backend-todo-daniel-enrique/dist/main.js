@@ -9,11 +9,11 @@ async function bootstrap() {
         .setTitle('OpenAPI definition')
         .setDescription('by Daniel Lastanao and Enrique Subías')
         .setVersion('0')
-        .addServer('http://localhost:8085 - Generated server url')
+        .addServer('http://localhost:8080 - Generated server url')
         .build();
     const document = swagger_1.SwaggerModule.createDocument(app, config);
     swagger_1.SwaggerModule.setup('api', app, document);
-    await app.listen(8085);
+    await app.listen(8081);
 }
 bootstrap();
 //# sourceMappingURL=main.js.map

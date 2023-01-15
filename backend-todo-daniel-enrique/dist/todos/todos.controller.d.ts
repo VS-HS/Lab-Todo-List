@@ -4,9 +4,10 @@ import { UpdateTodoDto } from './dto/update-todo.dto';
 export declare class TodosController {
     private readonly todosService;
     constructor(todosService: TodosService);
-    findAll(): string;
-    create(createTodoDto: CreateTodoDto): string;
+    create(name: string): CreateTodoDto;
+    findAll(): any[];
+    createJSON(createTodoDto: CreateTodoDto): CreateTodoDto;
+    remove(UpdateTodoDto: UpdateTodoDto): string;
     findOne(id: string): string;
-    update(id: string, updateTodoDto: UpdateTodoDto): string;
-    remove(id: string): string;
+    count(): number;
 }
