@@ -14,25 +14,27 @@ services:
     # networks:
     #   - todo-network
 
-#   backend:
-#     container_name: backend
-#     # network_mode: "service:database"
-#     # restart: always
-#     ports:
-#       - "8080:8080"
-#     environment:
-#       - SERVER_PORT=8080
-#       # - TYPEORM_URL=jdbc:mariadb://localhost:3006/todo_database
-#       - TYPEORM_URL=jdbc:mariadb://database:3306/todo_database
-#       - TYPEORM_USERNAME=user
-#       - TYPEORM_PASSWORD=1234
-#     depends_on:
-#       - database
-#     build:
-#       context: ./backend-todo-daniel-enrique
-#       dockerfile: Dockerfile
-#     networks:
-#       - todo-network
+  backend:
+    container_name: backend
+    # network_mode: "service:database"
+    # restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - TYPEORM_HOST=database
+      - TYPEORM_PORT=3306
+      - SERVER_PORT=8080
+      # - TYPEORM_URL=jdbc:mariadb://localhost:3006/todo_database
+      - TYPEORM_URL=jdbc:mariadb://database:3306/todo_database
+      - TYPEORM_USERNAME=user
+      - TYPEORM_PASSWORD=1234
+    depends_on:
+      - database
+    build:
+      context: ./backend-todo-daniel-enrique
+      dockerfile: Dockerfile
+    # networks:
+    #   - todo-network
 
 # networks:
 #   todo-network:
