@@ -1,3 +1,9 @@
-*/dist
-*/dist-seeder
-*/node_modules
+Dockerfile
+.dockerignore
+node_modules
+npm-debug.log
+dist
+
+# */dist
+# */dist-seeder
+# */node_modules

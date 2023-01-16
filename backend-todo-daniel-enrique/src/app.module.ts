@@ -11,14 +11,12 @@ import { TodoModule } from './todo/todo.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mariadb',
-      host: 'localhost',
-      port: 3001,
-      username: 'user',
-      password: '1234',
-      database: 'todo_database',
-      entities: [
-        Todo,
-      ],
+      host: process.env.TYPEORM_HOST || 'localhost',
+      port: +process.env.TYPEORM_PORT || 3001,
+      username: process.env.TYPEORM_USERNAME || 'user',
+      password: process.env.TYPEORM_PASSWORD || '1234',
+      database: process.env.TYPEORM_DATABASE || 'todo_database',
+      entities: [Todo],
       synchronize: true, // This is for development only. Do not use in production.
       autoLoadEntities: true, // This is for development only. Do not use in production.
     }),
