@@ -1,0 +1,13 @@
+services:
+  database:
+    image: mariadb:10.9
+    volumes:
+      - ./mariadb-data:/var/lib/mysql
+    environment:
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 'yes'
+      MARIADB_ROOT_PASSWORD: 'my-secret-pw'
+      MARIADB_DATABASE: 'todo_database'
+      MARIADB_USER: 'user'
+      MARIADB_PASSWORD: '1234'
+    ports:
+      - 3001:3306

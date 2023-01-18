@@ -8,11 +8,11 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('OpenAPI definition')
     .setDescription('by Daniel Lastanao and Enrique Subías')
-    .setVersion('0')
-    .addServer('http://localhost:8080 - Generated server url')
+    .setVersion('1.0')
+    .addServer('http://localhost:8080')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
   await app.listen(8080);
 }
-bootstrap().then((r) => console.log('Server started' + r));
+bootstrap().then(() => console.log('Server started'));

@@ -4,7 +4,6 @@ import { Todo } from './entities/todo.entity';
 export declare class TodoService {
     private todoRepository;
     constructor(todoRepository: Repository<Todo>);
-    todosDatabase: any[];
     create(createTodoDto: CreateTodoDto): Promise<(CreateTodoDto & Todo) | {
         timestamp: string;
         status: number;

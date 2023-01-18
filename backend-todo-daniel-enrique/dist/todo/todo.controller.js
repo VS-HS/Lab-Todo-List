@@ -16,6 +16,7 @@ exports.TodoController = void 0;
 const common_1 = require("@nestjs/common");
 const todo_service_1 = require("./todo.service");
 const create_todo_dto_1 = require("./dto/create-todo.dto");
+const swagger_1 = require("@nestjs/swagger");
 let TodoController = class TodoController {
     constructor(todosService) {
         this.todosService = todosService;
@@ -33,7 +34,7 @@ let TodoController = class TodoController {
         return this.todosService.create(createTodoDto);
     }
     remove(CreateTodoDto) {
-        this.todosService.remove(CreateTodoDto);
+        this.todosService.remove(CreateTodoDto).then(() => console.log('Deleted'));
     }
     findOne(id) {
         return this.todosService.findOne(id);
@@ -52,12 +53,26 @@ __decorate([
 ], TodoController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
+    (0, swagger_1.ApiOperation)({
+        summary: 'Returns a list of ToDo items',
+    }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], TodoController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Post)(),
+    (0, swagger_1.ApiOperation)({
+        summary: 'Creates a Todo Item with a JSON object as request parameter',
+    }),
+    (0, swagger_1.ApiBody)({
+        schema: {
+            properties: {
+                todo: { type: 'string' },
+                priority: { type: 'integer' },
+            },
+        },
+    }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_todo_dto_1.CreateTodoDto]),
@@ -65,6 +80,14 @@ __decorate([
 ], TodoController.prototype, "createJSON", null);
 __decorate([
     (0, common_1.Delete)(),
+    (0, swagger_1.ApiBody)({
+        schema: {
+            properties: {
+                todo: { type: 'string' },
+                priority: { type: 'integer' },
+            },
+        },
+    }),
     (0, common_1.HttpCode)(204),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),

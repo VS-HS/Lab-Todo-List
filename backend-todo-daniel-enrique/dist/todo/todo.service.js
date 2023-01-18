@@ -20,7 +20,6 @@ const todo_entity_1 = require("./entities/todo.entity");
 let TodoService = class TodoService {
     constructor(todoRepository) {
         this.todoRepository = todoRepository;
-        this.todosDatabase = [];
     }
     async create(createTodoDto) {
         if (createTodoDto.todo == null) {
@@ -47,7 +46,7 @@ let TodoService = class TodoService {
     async findOne(id) {
         const response = await this.todoRepository.findOneBy({ todo: id });
         if (response == null) {
-            return "null";
+            return 'null';
         }
         return response;
     }
