@@ -7,13 +7,13 @@
 [![Docker](https://img.shields.io/badge/Docker-20.10.5-blue)](https://www.docker.com/)
 [![NPM](https://img.shields.io/badge/NPM-6.14.11-green)](https://www.npmjs.com/)
 
-[![Contributors][contributors-shield]][contributors-url]
-
-
 
 # Description
 
-Todo list backend with **NestJS** by **Daniel Lastanao** and **Enrique Subías**
+Todo list backend with **NestJS** and **MariaDB**
+
+by **Daniel Lastanao** and **Enrique Subías**
+
 
 # Installation
 
@@ -26,27 +26,30 @@ git clone https://github.com/VS-HS/Lab-Todo-List.git
 2. Compose up the docker container with the database
 
 ```bash
-docker-compose up -d
+docker compose -f "docker-compose.yml" up -d --build
 ```
 
-2. Access the backend folder
+There are 2 docker containers, one for the database and another for the backend.
 
-```bash
-cd backend-todo-daniel-enrique
-```
+## Database container
 
-3. Install the dependencies
+| Name                     | Value           |
+|--------------------------|-----------------|
+| Port (on local machine): | `3301`          |
+| Port (on container):     | `3306`          |
+| User:                    | `user`          |
+| Password:                | `1234`          |
+| Database:                | `todo_database` |
 
-```bash
-npm i
-```
 
-4. Run the server
+## Backend container
 
-```bash
-npm start
-```
+| Name                     | Value           |
+|--------------------------|-----------------|
+| Port (on local machine): | `8080`          |
+| Port (on container):     | `8080`          |
 
-Swagger documentation is available at
 
-## <img src="static/swagger.svg" width="20" alt="Swagger"> [http://localhost:8085/api](http://localhost:8085/api)
+Backend Swagger Documentation available at:
+
+## <img src="static/swagger.svg" width="20" alt="Swagger"> [http://localhost:8080/api](http://localhost:8080/api)
