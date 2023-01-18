@@ -15,4 +15,4 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
   await app.listen(8080);
 }
-bootstrap();
+bootstrap().then((r) => console.log('Server started' + r));

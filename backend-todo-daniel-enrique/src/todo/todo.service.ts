@@ -11,9 +11,6 @@ export class TodoService {
     @InjectRepository(Todo) private todoRepository: Repository<Todo>,
   ) {}
 
-  todosDatabase = [];
-  // todosDatabase is of type CreateTodoDto[], it has todo and priority
-
   async create(createTodoDto: CreateTodoDto) {
     if (createTodoDto.todo == null) {
       return {
@@ -36,7 +33,6 @@ export class TodoService {
     return await this.todoRepository.find();
   }
 
-
   async remove(CreateTodoDto: CreateTodoDto) {
     return await this.todoRepository.delete(CreateTodoDto);
   }
@@ -44,11 +40,10 @@ export class TodoService {
   async findOne(id: string) {
     const response = await this.todoRepository.findOneBy({ todo: id });
     if (response == null) {
-      return "null";
+      return 'null';
     }
     return response;
   }
-
 
   count() {
     // return this.todosDatabase.length;

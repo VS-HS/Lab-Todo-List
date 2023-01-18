@@ -16,13 +16,6 @@ import { UpdateTodoDto } from './dto/update-todo.dto';
 export class TodoController {
   constructor(private readonly todosService: TodoService) {}
 
-/*
-  @ApiResponses(value = 
-    {
-        @ApiResponse(responseCode = "201", description = "Item has been created" , content = @Content)
-    })*/
-  
-
   @Post('/:name') // Create an object and Priority is auto generated
   @HttpCode(201)
   create(@Param('name') name: string) {
@@ -37,12 +30,10 @@ export class TodoController {
     return this.todosService.findAll();
   }
 
-
   @Post() // Create a Todo Item with a JSON object as a request parameer
   createJSON(@Body() createTodoDto: CreateTodoDto) {
     return this.todosService.create(createTodoDto);
   }
-
 
   @Delete()
   @HttpCode(204)
